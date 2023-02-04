@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;500;600;700&family=Roboto+Slab:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: #1e213f;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.timer-bg {
+  background: linear-gradient(135deg, #0e112a 0%, #2e325a 100%);
+  box-shadow: -50px -50px 100px #272c5a, 50px 50px 100px #121530;
+}
+
+.circle {
+  stroke-linecap: round;
+  stroke-dasharray: 1186px;
+  transform: rotate(-90deg);
+  transform-origin: center center;
+}
