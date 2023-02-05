@@ -25,14 +25,17 @@ module.exports = {
       xl: { max: "1279px" },
       // => @media (max-width: 1279px) { ... }
 
-      lg: { max: "1023px" },
-      // => @media (max-width: 1023px) { ... }
+      lg: { max: "629px" },
+      // => @media (max-width: 629px) { ... }
 
       md: { max: "568px" },
       // => @media (max-width: 568px) { ... }
 
-      sm: { max: "639px" },
-      // => @media (max-width: 639px) { ... }
+      sm: { max: "426px" },
+      // => @media (max-width: 426px) { ... }
+
+      "2sm": { max: "384px" },
+      // => @media (max-width: 384px) { ... }
     },
   },
   plugins: [],

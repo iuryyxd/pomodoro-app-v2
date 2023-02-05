@@ -13,7 +13,7 @@ export default function Timer({ timerType }: TimerProps) {
   const [percentage, setPercentage] = useState<number>(0);
   const [timer, setTimer] = useState<string>();
   const [minutes, setMinutes] = useState<number>();
-  const [seconds, setSeconds] = useState<number>(59);
+  const [seconds, setSeconds] = useState<number>(60);
 
   const { pomodoroTimer, longBreakTimer, shortBreakTimer, color } =
     useContext(StatesContexts);
@@ -86,13 +86,22 @@ export default function Timer({ timerType }: TimerProps) {
     setIsRunning(false);
     setPercentage(0);
     setTimer(`${timers[timerType as keyof typeof timers]}:00`);
-    setMinutes(timers[timerType as keyof typeof timers] - 1);
-    setSeconds(59);
+    setMinutes(timers[timerType as keyof typeof timers]);
+    setSeconds(60);
+  }, [pomodoroTimer, shortBreakTimer, longBreakTimer]);
+
+  useEffect(() => {
+    clearInterval(timerInterval);
+    setIsRunning(false);
+    setPercentage(0);
+    setTimer(`${timers[timerType as keyof typeof timers]}:00`);
+    setMinutes(timers[timerType as keyof typeof timers]);
+    setSeconds(60);
   }, [timerType]);
 
   return (
-    <div className="w-full h-[480px] md:h-[380px] rounded-full timer-bg mt-20 mb-[50px] flex items-center justify-center">
-      <div className="relative w-[420px] h-[420px] md:h-[380px] rounded-full bg-dark-blue-2 flex flex-col items-center justify-center">
+    <div className="w-full h-[480px] md:h-[380px] sm:h-[300px] rounded-full timer-bg mt-20 mb-[50px] flex items-center justify-center">
+      <div className="relative w-[420px] h-[420px] md:w-[340px] md:h-[340px] sm:w-[280px] sm:h-[280px] rounded-full bg-dark-blue-2 flex flex-col items-center justify-center">
         <svg className="w-full h-full absolute">
           <circle
             style={{ strokeDashoffset: percentage }}
@@ -107,7 +116,7 @@ export default function Timer({ timerType }: TimerProps) {
             })}
           />
         </svg>
-        <h1 className="font-bold text-[100px] md:text-[60px] text-light-blue mb-5 z-10">
+        <h1 className="font-bold text-[100px] md:text-[80px] sm:text-[60px] text-light-blue mb-5 z-10">
           {timer && timer}
         </h1>
         <p

@@ -37,7 +37,7 @@ export default function App() {
         setFont,
       }}
     >
-      <div className="w-full max-w-[480px] md:max-w-[380px] mx-auto h-full flex flex-col">
+      <div className="w-full max-w-[480px] md:max-w-[380px] sm:max-w-[300px] mx-auto h-full flex flex-col">
         <Header timerType={timerType} setTimerType={setTimerType} />
         <Timer timerType={timerType} />
         <Modal />

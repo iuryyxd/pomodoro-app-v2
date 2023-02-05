@@ -24,8 +24,8 @@ export default function NumberInput({
   }
 
   return (
-    <div className="flex flex-col gap-2">
-      <p className="font-bold opacity-40 text-xs">{name}</p>
+    <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center lg:w-full gap-2">
+      <p className="font-bold opacity-40 text-xs lg:text-sm">{name}</p>
       <div className="flex items-center justify-between py-2 px-5 w-[156px] bg-light-grey rounded-2xl">
         <p className="font-bold text-base">{state}</p>
         <div className="flex flex-col gap-1">

@@ -68,7 +68,7 @@ export default function Modal() {
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed bg-black opacity-30 inset-0" />
-        <Dialog.Content className="fixed bg-white w-[588px] z-50 h-[473px] rounded-3xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <Dialog.Content className="fixed bg-white max-w-[588px] w-full h-[473px] lg:max-w-[400px] sm:max-w-[300px] lg:h-auto z-50 rounded-3xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <header className="flex items-center justify-between py-8 px-10 border-b border-solid border-black/10">
             <h1 className="text-3xl font-bold">Settings</h1>
             <Dialog.Close asChild>
@@ -83,11 +83,11 @@ export default function Modal() {
 
           <main className="px-10 mt-5">
             <div className="flex flex-col">
-              <h4 className="font-bold text-sm tracking-[8px]">
+              <h4 className="font-bold text-sm tracking-[8px] lg:text-center">
                 TIME (MINUTES)
               </h4>
 
-              <div className="flex items-center justify-between mt-5 pb-5 border-b border-solid border-black/10">
+              <div className="flex lg:flex-col lg:gap-5 items-center justify-between mt-5 pb-5 border-b border-solid border-black/10">
                 {timersType.map((type) => (
                   <NumberInput
                     key={crypto.randomUUID()}
@@ -98,7 +98,7 @@ export default function Modal() {
                 ))}
               </div>
 
-              <div className="flex items-center justify-between mt-5 pb-5 border-b border-solid border-black/10">
+              <div className="flex lg:flex-col lg:gap-6 items-center justify-between mt-5 pb-5 border-b border-solid border-black/10">
                 <h4 className="font-bold text-sm tracking-[8px]">FONT</h4>
 
                 <div className="flex items-center gap-8">
@@ -124,7 +124,7 @@ export default function Modal() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between mt-5 pb-5">
+              <div className="flex lg:flex-col lg:gap-6 items-center justify-between mt-5 pb-5 lg:pb-9">
                 <h4 className="font-bold text-sm tracking-[8px]">COLOR</h4>
 
                 <div className="flex items-center gap-8">
