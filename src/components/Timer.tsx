@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { useState, useContext, useEffect } from "react";
 import StatesContexts from "../Contexts/StatesContext";
+import { FiRotateCcw, FiPlay, FiPause } from "react-icons/fi";
 
 interface TimerProps {
   timerType: number;
@@ -48,6 +49,15 @@ export default function Timer({ timerType }: TimerProps) {
     setIsRunning(false);
   }
 
+  function resetTimer() {
+    clearInterval(timerInterval);
+    setIsRunning(false);
+    setPercentage(0);
+    setTimer(`${timers[timerType as keyof typeof timers]}:00`);
+    setMinutes(timers[timerType as keyof typeof timers]);
+    setSeconds(60);
+  }
+
   useEffect(() => {
     setTimer(`${timers[timerType as keyof typeof timers]}:00`);
   }, []);
@@ -82,12 +92,7 @@ export default function Timer({ timerType }: TimerProps) {
   }, [seconds]);
 
   useEffect(() => {
-    clearInterval(timerInterval);
-    setIsRunning(false);
-    setPercentage(0);
-    setTimer(`${timers[timerType as keyof typeof timers]}:00`);
-    setMinutes(timers[timerType as keyof typeof timers]);
-    setSeconds(60);
+    resetTimer();
   }, [pomodoroTimer, shortBreakTimer, longBreakTimer]);
 
   useEffect(() => {
@@ -119,12 +124,59 @@ export default function Timer({ timerType }: TimerProps) {
         <h1 className="font-bold text-[100px] md:text-[80px] sm:text-[60px] text-light-blue mb-5 z-10">
           {timer && timer}
         </h1>
-        <p
-          onClick={isRunning ? pauseTimer : startTimer}
-          className="tracking-[15px] font-bold text-base text-light-blue cursor-pointer z-10 hover:text-red transition-all"
-        >
-          {isRunning ? "RESUME" : "START"}
-        </p>
+        <div className="flex items-center gap-5 text-white">
+          {!isRunning ? (
+            <button
+              className="cursor-pointer bg-transparent z-10"
+              onClick={startTimer}
+            >
+              <FiPlay
+                size={24}
+                className={clsx(
+                  "tracking-[15px] font-bold text-base cursor-pointer z-10 transition-all",
+                  {
+                    ["hover:text-red"]: color === "red",
+                    ["hover:text-cyan"]: color === "cyan",
+                    ["hover:text-pink"]: color === "pink",
+                  }
+                )}
+              />
+            </button>
+          ) : (
+            <button
+              onClick={pauseTimer}
+              className="cursor-pointer bg-transparent z-10"
+            >
+              <FiPause
+                size={24}
+                className={clsx(
+                  "tracking-[15px] font-bold text-base cursor-pointer z-10 transition-all",
+                  {
+                    ["hover:text-red"]: color === "red",
+                    ["hover:text-cyan"]: color === "cyan",
+                    ["hover:text-pink"]: color === "pink",
+                  }
+                )}
+              />
+            </button>
+          )}
+          <button
+            onClick={resetTimer}
+            className="cursor-pointer bg-transparent z-10"
+          >
+            <FiRotateCcw
+              size={24}
+              className={clsx(
+                "tracking-[15px] font-bold text-base cursor-pointer z-10 transition-all",
+                {
+                  ["hover:text-red"]: color === "red",
+                  ["hover:text-cyan"]: color === "cyan",
+                  ["hover:text-pink"]: color === "pink",
+                }
+              )}
+            />
+          </button>
+        </div>
       </div>
     </div>
   );
